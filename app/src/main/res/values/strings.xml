@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Coisa de Noiva</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_incluir">Novo</string>
+    <string name="action_trash">Excluir</string>
+    <string name="action_save">Salvar</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_settings">settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_email">Enviar por Email</string>
+    <string name="action_add">Novo</string>
+    <string name="alert_yes">Sim</string>
+    <string name="alert_no">Não</string>
+    <string name="mss_alert">Você tem certeza que quer deletar?</string>
+    <string name="title_alert">Corfirmação</string>
+    <string name="title_activity_tab_host_fragment">TabHostFragment</string>
+    <string name="title_activity_my_tab_factory">MyTabFactory</string>
+    <string name="title_activity_my_page_adapter">MyPageAdapter</string>
+    <string name="title_activity_chart">ChartActivity</string>
+    <string name="title_activity_main_activity2">MainActivity2</string>
+    <string name="title_activity_principal">PrincipalActivity</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_configuracao">Configuracao</string>
+    <string name="title_confirmado">Confirmaram</string>
+    <string name="title_naoconfirmado">Não Confirmaram</string>
+    <string name="title_naosabe">Não Sabem</string>
+    <string name="title_total">Total Convidados</string>
+</resources>
