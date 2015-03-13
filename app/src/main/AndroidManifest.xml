@@ -28,6 +28,10 @@
             android:name=".Configuracao"
             android:label="@string/title_activity_configuracao" >
         </activity>
+        <activity
+            android:name=".AddDebito"
+            android:label="@string/title_activity_add_debito" >
+        </activity>
     </application>
 
 </manifest>

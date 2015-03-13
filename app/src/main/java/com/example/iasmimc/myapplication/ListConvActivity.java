@@ -90,8 +90,8 @@ public  static List<Convidados> checkList;
                 return  true;
             }
         });
-
-      /*  trash.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        MenuItem trash = menu.findItem(R.id.action_excluir);
+        trash.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(ListConvActivity.this);
@@ -125,11 +125,24 @@ public  static List<Convidados> checkList;
 
                 // Showing Alert Message
                 alertDialog.show();
+                MenuItem trash = _menu.findItem(R.id.action_excluir);
+                trash.setVisible(false);
                 return true;
             }
         });
 
+        MenuItem action_debito = menu.findItem(R.id.action_divida);
+        final Intent deb = new Intent(this, AddDebito.class);
+        action_debito.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
 
+                startActivity(deb);
+                return  true;
+            }
+        });
+
+/*
         edit.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

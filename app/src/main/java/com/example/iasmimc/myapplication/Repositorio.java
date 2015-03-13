@@ -163,6 +163,54 @@ public class Repositorio {
     }
 
 
+    public List<Debito> ListarDebito()
+    {
+        Cursor c = db.query(NOME_DESPESAS, new String[]{"_id","nomedebito","parcelas","valortotal"}, null, null, null, null, null, null);
+
+        List<Debito> cv = new ArrayList<Debito>();
+
+        if(c.moveToFirst())
+        {
+
+            do {
+                Debito d = new Debito();
+                d.nome = (c.getString(c.getColumnIndex("nomedebito")));
+                d.parcelas = (c.getInt(c.getColumnIndex("parcelas")));
+                d.valor = (c.getDouble(c.getColumnIndex("valortotal")));
+
+                cv.add(d);
+            }
+            while (c.moveToNext());
+        }
+
+        return  cv;
+
+
+    }
+
+    public  long inserirDebito(Debito d)
+    {
+        ContentValues values = new ContentValues();
+
+        values.put("nomedebito", d.nome);
+        values.put("parcelas", d.parcelas);
+        values.put("valortotal",d.valor);
+
+        long id = db.insert(NOME_DESPESAS, "", values);
+        return  id;
+    }
+
+    public int deletarDebito(Long id)
+    {
+        String where = "_id =?";
+        String _id = String.valueOf(id);
+        String[] whereArgs = new String[]{_id};
+
+        int count = db.delete(NOME_DESPESAS, where , whereArgs);
+        return  count;
+    }
+
+
     public void fechar() {
         if (db != null) {
             db.close();

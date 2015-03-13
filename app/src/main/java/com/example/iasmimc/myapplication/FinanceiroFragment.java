@@ -45,7 +45,7 @@ public class FinanceiroFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-
+    Repositorio repositorio;
 
     /**
      * Use this factory method to create a new instance of
@@ -68,15 +68,24 @@ public class FinanceiroFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_financeiro, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_financeiro, container, false);
+        ListView listView = (ListView) rootView.findViewById(R.id.listviewfinanceira);
+
+        repositorio = new RepositorioScript(rootView.getContext());
+
+        List<Debito> lista = new ArrayList<>();
+
+        lista = repositorio.ListarDebito();
+
+        listView.setAdapter(new FinanceiroAdapter(listView.getContext(), lista));
+        return  rootView;
     }
 
 
-
-
 }
+
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dip">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dip"
+        android:layout_weight="1"
+        android:layout_height="fill_parent">
+        <TextView
+            android:id="@+id/nomeDebito"
+            android:textSize="7pt"
+            android:textColor="@color/accent_material_light"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:text=""
+            android:gravity="center_vertical"
+            />
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/qtde"
+                    android:textSize="12pt"
+                    android:text="2"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:paddingRight="15dp"
+                    android:src="@drawable/currency"/>
+                <ImageView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_tick"
+                    />
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/valor"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:text="125,00"
+        android:textSize="12pt"
+        android:textColor="@color/budgetColorGreenBackground"
+
+        />
+</LinearLayout>

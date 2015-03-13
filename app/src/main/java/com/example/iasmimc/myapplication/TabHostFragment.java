@@ -84,11 +84,12 @@ public class TabHostFragment extends Fragment implements TabHost.OnTabChangeList
         Fragment f2 = ListConvActivity.PlaceholderFragment.newInstance(1);
         Fragment f3 = ChartFragment.newInstance(2);
         Fragment f4 = FinanceiroFragment.newInstance(3);
-
+        Fragment f5 = new Fragment();
         fList.add(f1);
         fList.add(f2);
         fList.add(f3);
         fList.add(f4);
+        fList.add(f5);
         return fList;
     }
 
@@ -103,11 +104,12 @@ public class TabHostFragment extends Fragment implements TabHost.OnTabChangeList
         Drawable list = getResources().getDrawable(R.drawable.ic_action_list_2);
         Drawable chart = getResources().getDrawable(R.drawable.ic_action_pie_chart);
         Drawable debt = getResources().getDrawable(R.drawable.ic_action_creditcard);
+        Drawable chat = getResources().getDrawable(R.drawable.ic_action_dialog);
         AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab1").setIndicator("",home));
         AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab2").setIndicator("",list));
         AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab3").setIndicator("",chart));
         AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab4").setIndicator("",debt));
-
+        AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab4").setIndicator("",chat));
         mTabHost.setOnTabChangedListener(this);
     }
 }

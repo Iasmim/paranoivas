@@ -33,4 +33,11 @@
     <string name="title_naoconfirmado">Não Confirmaram</string>
     <string name="title_naosabe">Não Sabem</string>
     <string name="title_total">Total Convidados</string>
+    <string name="title_divida">Adicionar Divida</string>
+    <string name="title_activity_add_debito">AddDebito</string>
+    <string name="nomedadivida">Nome da Dívida</string>
+    <string name="valorparcela">Valor da Parcela</string>
+    <string name="addparcela">Adicione a Parcela</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancelar</string>
 </resources>
