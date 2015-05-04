@@ -2,31 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
+    android:orientation="horizontal"
     android:padding="6dip">
-    <TextView
-        android:text="   "
-        android:textSize="12pt"
-        android:textStyle="bold"
-        android:id="@+id/retangulo"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        />
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dip"
-        android:layout_weight="1"
-        android:layout_height="fill_parent">
-        <TextView
-            android:id="@+id/textlegenda"
-            android:textSize="7pt"
-            android:textColor="@color/random3"
-            android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"
-            android:text=""
-            android:gravity="center_vertical"
-            />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/retangulo"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textlegenda"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="7pt" />
+
 
 </LinearLayout>

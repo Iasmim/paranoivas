@@ -2,17 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.iasmimc.myapplication" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ConvidadosAdd"
+            android:name=".Screen.ConvidadosAdd"
             android:label="@string/title_activity_convidados_add" >
         </activity>
         <activity
-            android:name=".ListConvActivity"
+            android:name=".Screen.ListConvActivity"
             android:icon="@drawable/noivos2" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,16 +23,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MenuActivity"
-            android:label="@string/title_activity_menu" >
-        </activity>
-        <activity
-            android:name=".Configuracao"
+            android:name=".Screen.Configuracao"
             android:label="@string/title_activity_configuracao" >
         </activity>
         <activity
-            android:name=".AddDebito"
+            android:name=".Screen.AddDebito"
             android:label="@string/title_activity_add_debito" >
+        </activity>
+        <activity
+            android:name=".Fragment.FoursquareVenueList"
+            android:label="@string/title_activity_foursquare_venue_list" >
+        </activity>
+
+        <activity
+            android:name=".Class.SelecionaFornecedor"
+            android:label="@string/title_activity_seleciona_fornecedor" >
         </activity>
     </application>
 

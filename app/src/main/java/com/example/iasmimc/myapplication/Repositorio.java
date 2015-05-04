@@ -5,6 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.iasmimc.myapplication.Class.Config;
+import com.example.iasmimc.myapplication.Class.Convidados;
+import com.example.iasmimc.myapplication.Class.Debito;
+import com.example.iasmimc.myapplication.Class.Fornecedor;
+
 import java.util.ArrayList;
 import java.util.List;
 

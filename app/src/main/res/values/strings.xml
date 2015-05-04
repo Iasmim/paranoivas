@@ -40,4 +40,18 @@
     <string name="addparcela">Adicione a Parcela</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancelar</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="submit_label">Submit</string>
+    <string name="title_activity_foursquare_venue_list">FoursquareVenueList</string>
+
+
+    <string name="title_activity_seleciona_fornecedor">Selecionar Fornecedores</string>
+
+    <string name="connectionmsg">Sem conexão de dados</string>
+    <string name="returnmsg">sem dados</string>
+
+    <string name="myforne">Meus Fornecedores</string>
+    <string name="textforn">Deseja adicionar este fornecedor como devedor?</string>
+
 </resources>

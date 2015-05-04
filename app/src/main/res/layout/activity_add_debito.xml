@@ -1,22 +1,30 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    tools:context="com.example.iasmimc.myapplication.AddDebito">
-
-    <EditText android:text="@string/nomedadivida"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-    <ImageView
-        android:id="@+id/addmais"
-        android:layout_width="fill_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:text="Nome da Divida"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_add"/>
+        android:id="@+id/nomeparcela"
+        android:textSize="10pt"
+        android:padding="16dp"
+        />
     <ListView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:paddingTop="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/listadividas">
-     </ListView>
 
-</LinearLayout>
+    </ListView>
+    <com.example.iasmimc.myapplication.FloatingActionButton
+        android:id="@+id/pink_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:fab_icon="@drawable/ic_action_add"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

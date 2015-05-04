@@ -3,15 +3,15 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="com.example.iasmimc.myapplication.ConvidadosAdd$GeneralPreferenceFragment"
+        android:fragment="com.example.iasmimc.myapplication.Screen.ConvidadosAdd$GeneralPreferenceFragment"
         android:title="@string/pref_header_general" />
 
     <header
-        android:fragment="com.example.iasmimc.myapplication.ConvidadosAdd$NotificationPreferenceFragment"
+        android:fragment="com.example.iasmimc.myapplication.Screen.ConvidadosAdd$NotificationPreferenceFragment"
         android:title="@string/pref_header_notifications" />
 
     <header
-        android:fragment="com.example.iasmimc.myapplication.ConvidadosAdd$DataSyncPreferenceFragment"
+        android:fragment="com.example.iasmimc.myapplication.Screen.ConvidadosAdd$DataSyncPreferenceFragment"
         android:title="@string/pref_header_data_sync" />
 
 </preference-headers>

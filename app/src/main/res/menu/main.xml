@@ -5,12 +5,8 @@
         android:icon="@drawable/ic_action_trash"
         app:showAsAction="always"
         android:visible="false"/>
-    <item android:id="@+id/action_incluir" android:title="@string/action_add"
-        app:showAsAction="never" />
-    <item android:id="@+id/action_email" android:title="@string/action_email"
-        android:orderInCategory="100" app:showAsAction="never" />
+
     <item android:id="@+id/action_conf" android:title="@string/title_activity_configuracao"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_divida" android:title="@string/title_divida"
-        android:orderInCategory="100" app:showAsAction="never" />
+
 </menu>
