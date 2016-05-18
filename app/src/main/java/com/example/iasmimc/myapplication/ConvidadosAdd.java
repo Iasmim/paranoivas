@@ -1,5 +1,6 @@
 package com.example.iasmimc.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.renderscript.Int3;
@@ -15,7 +16,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.iasmimc.myapplication.Screen.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +29,7 @@ public class ConvidadosAdd extends ActionBarActivity
 {
     private String  array_spinner[];
     private String  array_spinner1[];
+
     public static Repositorio repositorio;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +39,11 @@ public class ConvidadosAdd extends ActionBarActivity
         ibt.setImageResource(R.drawable.ic_action_add);
 
 
-
-
-
         ibt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText qtde = (EditText) findViewById(R.id.qtdeConv);
-                int count =   Integer.parseInt(qtde.getText().toString());
+                int count = 0;//qtde.getText() == null ? 0 :  Integer.parseInt(qtde.getText().toString());
                 count++;
                 qtde.setText(String.valueOf(count));
             }
@@ -117,6 +119,8 @@ public class ConvidadosAdd extends ActionBarActivity
             else
                 sp.setSelection(2);
 
+
+
         }
     }
 
@@ -141,17 +145,17 @@ public class ConvidadosAdd extends ActionBarActivity
                 Spinner sp = (Spinner) findViewById(R.id.spinner1);
 
                 Object o = sp1.getSelectedItem();
-                if(o.toString().equals("Noiva"))
+                if (o.toString().equals("Noiva"))
                     c.setTipo(0);
                 else
                     c.setTipo(1);
 
 
                 Object o1 = sp.getSelectedItem();
-                if(o1.toString().contains("Não Confirmou Presença"))
-                   c.setConfirmado(1);
+                if (o1.toString().contains("Não Confirmou Presença"))
+                    c.setConfirmado(1);
                 else if (o1.toString().contains("Não Sabe"))
-                   c.setConfirmado(2);
+                    c.setConfirmado(2);
                 else
                     c.setConfirmado(0);
 
@@ -159,20 +163,20 @@ public class ConvidadosAdd extends ActionBarActivity
                 c.setQtde(Integer.valueOf(qtde.getText().toString()));
 
 
-
-                repositorio.inserirConvidado(c);
+                //  repositorio.inserirConvidado(c);
                 // Write your code here to invoke YES event
                 Toast.makeText(getApplicationContext(), "Contato Criado.", Toast.LENGTH_SHORT).show();
-                c.setNome("");
-                c.setQtde(0);
-                c.setTipo(0);
-                c.setConfirmado(0);
-                return  true;
+                txt.setText("");
+                qtde.setText(0);
+                sp1.setSelection(0);
+                sp.setSelection(0);
+
+                return true;
             }
         });
-
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
