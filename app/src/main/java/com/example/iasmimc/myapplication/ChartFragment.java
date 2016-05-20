@@ -39,6 +39,7 @@ import java.util.List;
 
 public class ChartFragment extends Fragment {
     Repositorio repositorio;
+    View v;
     private static final String ARG_SECTION_NUMBER = "section_number";
     public static ChartFragment newInstance(int section_number) {
         ChartFragment fragment = new ChartFragment();
@@ -57,13 +58,21 @@ public class ChartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.fragment_chart, container, false);
+        v =  inflater.inflate(R.layout.fragment_chart, container, false);
+        return getView(v);
+    }
 
+    @Override
+    public void onStart() {
+        getView(v);
+        super.onStart();
+    }
 
+    private View getView(View v) {
         repositorio = new RepositorioScript(v.getContext());
 
         List<Convidados> convidados = new ArrayList<>();
-        convidados = repositorio.ListarConvidados();
+        //  convidados = repositorio.ListarConvidados();
 
 
         int confirmados = 0;
@@ -93,59 +102,15 @@ public class ChartFragment extends Fragment {
 
         int total = confirmados + nconfirmados + nsabem;
 
-        List<PieDetailsItem> piedata = new ArrayList<PieDetailsItem>(0);
-        int maxCount=0;
-        int itemCount=0;
-
-        //create a slice
-        PieDetailsItem item = new PieDetailsItem();
-        item.count = confirmados;
-        item.label = getResources().getString(R.string.title_confirmado);
-        item.color = Color.BLUE;
-        item.percent = confirmados;
-        piedata.add(item);
-        maxCount=maxCount+confirmados;
-
-
-        PieDetailsItem item2 = new PieDetailsItem();
-        item2.count =nconfirmados;
-        item2.label = getResources().getString(R.string.title_naoconfirmado);
-        item2.color = Color.BLACK;
-        item2.percent = nconfirmados;
-        piedata.add(item2);
-        maxCount=maxCount+nconfirmados;
-
-
-        PieDetailsItem item3 = new PieDetailsItem();
-        item3.count = nsabem;
-        item3.label =getResources().getString(R.string.title_naosabe);
-        item3.color = Color.WHITE;
-        item3.percent = nsabem;
-        piedata.add(item3);
-        maxCount=maxCount+nsabem;
-
-        ImageView pie = (ImageView)v.findViewById(R.id.pie);
-        Bitmap mBaggroundImage=Bitmap.createBitmap(200,200,Bitmap.Config.ARGB_8888);
-        PieChart piechart=new PieChart(v.getContext());
-        piechart.setLayoutParams(new LinearLayout.LayoutParams(200,200));
-        piechart.setGeometry(200, 200, 2, 2, 2, 2, 2130837504);
-        piechart.setSkinparams(getResources().getColor(android.R.color.transparent));
-        piechart.setData(piedata, maxCount);
-        piechart.invalidate();
-        piechart.draw(new Canvas(mBaggroundImage));
-        pie.setImageBitmap(mBaggroundImage);
-
-        // Inflate the layout for this fragment
-
 
         ListView listView = (ListView) v.findViewById(R.id.listchart);
 
         List<Legendas> lista = new ArrayList<Legendas>();
 
-         Legendas l1 = new Legendas();
-         l1.Color = Color.BLUE;
-         l1.Descricao =getResources().getString(R.string.title_confirmado) + "("+confirmados+")";
-         l1.id = 0;
+        Legendas l1 = new Legendas();
+        l1.Color = Color.BLUE;
+        l1.Descricao =getResources().getString(R.string.title_confirmado) + "("+confirmados+")";
+        l1.id = 0;
 
         Legendas l2 = new Legendas();
         l2.Color =Color.BLACK;
@@ -169,6 +134,6 @@ public class ChartFragment extends Fragment {
         listView.setAdapter(new LegendaConvidados(listView.getContext(), lista));
 
 
-       return  v;
+        return  v;
     }
 }

@@ -26,6 +26,7 @@ import com.example.iasmimc.myapplication.Class.Convidados;
 import com.example.iasmimc.myapplication.Class.Debito;
 import com.example.iasmimc.myapplication.FloatingActionButton;
 import com.example.iasmimc.myapplication.FloatingActionsMenu;
+import com.example.iasmimc.myapplication.Fragment.FinanceiroFragment;
 import com.example.iasmimc.myapplication.R;
 import com.example.iasmimc.myapplication.Repositorio;
 import com.example.iasmimc.myapplication.RepositorioScript;
@@ -49,89 +50,58 @@ public class AddDebito extends ActionBarActivity {
 
         Intent it = getIntent();
         TextView t = (TextView) findViewById(R.id.nomeparcela);
-
+        TextView t1 = (TextView) findViewById(R.id.valorparcela);
+        TextView t2 = (TextView) findViewById(R.id.vezes);
+        TextView t3 = (TextView) findViewById(R.id.pagas);
+        TextView t4 = (TextView) findViewById(R.id.id_parcela);
         Bundle bl = it.getExtras();
 
-        if (bl != null)
+        if (bl != null) {
             t.setText(it.getStringExtra("nome"));
-
-
-        FloatingActionButton f = (FloatingActionButton) findViewById(R.id.pink_icon);
-
-        f.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onButtonClick();
-            }
-        });
-
-    }
-
-
-    public void onButtonClick() {
-        // Creates the dialog if necessary, then shows it.
-        // Will show the same dialog if called multiple times.
-        showDialog(0);
-    }
-
-    /**
-     * Called to create a dialog to be shown.
-     */
-    @Override
-    protected Dialog onCreateDialog(int id) {
-
-        switch (id) {
-            case 0:
-                return createExampleDialog();
-            default:
-                return null;
+            t1.setText(it.getStringExtra("valor"));
+            t2.setText(it.getStringExtra("vezes"));
+            t3.setText(it.getStringExtra("pagas"));
+            t4.setText(it.getStringExtra("id_parcela"));
         }
     }
 
-    /**
-     * Create and return an example alert dialog with an edit text box.
-     */
-    private Dialog createExampleDialog() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.addparcela);
-        builder.setMessage(R.string.valorparcela);
-
-        // Use an EditText view to get user input.
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_NUMBER);
-        builder.setView(input);
-
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                String value = input.getText().toString();
-                valores.add(value);
-                ListView viewList = (ListView) findViewById(R.id.listadividas);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(),
-                        android.R.layout.simple_list_item_1, valores);
-                viewList.setAdapter(adapter);
-
-                return;
-            }
-        });
-
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                return;
-            }
-        });
-
-        return builder.create();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_add_debito, menu);
+
+        MenuItem save = menu.findItem(R.id.action_settings);
+        save.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                repositorio = new RepositorioScript(getBaseContext());
+                Debito c = new Debito();
+
+                EditText txt = (EditText) findViewById(R.id.nomeparcela);
+                EditText valor = (EditText) findViewById(R.id.valorparcela);
+                EditText numvezes = (EditText) findViewById(R.id.vezes);
+                EditText pagas = (EditText) findViewById(R.id.pagas);
+                TextView idp = (TextView) findViewById(R.id.id_parcela);
+
+
+                c.nome = (txt.getText().toString());
+                c.parcelas = Integer.parseInt(numvezes.getText().toString());
+                c.valor = Double.parseDouble(valor.getText().toString());
+                c.pagas = Integer.parseInt(pagas.getText().toString());
+
+                if(!idp.getText().toString().isEmpty())
+                    c.id = Integer.parseInt(idp.getText().toString());
+
+                repositorio.inserirDebito(c);
+                Toast.makeText(getApplicationContext(), R.string.txtDividacriada, Toast.LENGTH_SHORT).show();
+                setResult(0);
+                finish();
+                return true;
+            }
+        });
+
         return true;
     }
 
@@ -145,34 +115,8 @@ public class AddDebito extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 
-
-            repositorio = new RepositorioScript(getBaseContext());
-            Debito c = new Debito();
-
-            EditText txt = (EditText) findViewById(R.id.nomeparcela);
-
-            c.nome = (txt.getText().toString());
-            List<Debito> lista = new ArrayList<>();
-            ListView viewList = (ListView) findViewById(R.id.listadividas);
-
-
-            int count = viewList.getCount();
-            Double valores[] = new Double[count];
-            Double valor = 0.0;
-            for (int i = 0; i < count; i++) {
-                TextView row = (TextView) viewList.getChildAt(i);
-                valores[i] = Double.parseDouble(row.getText().toString());
-                valor += Double.parseDouble(row.getText().toString());
-            }
-
-            c.parcelas = count;
-            c.valor = valor;
-            repositorio.inserirDebito(c);
-
             return true;
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }

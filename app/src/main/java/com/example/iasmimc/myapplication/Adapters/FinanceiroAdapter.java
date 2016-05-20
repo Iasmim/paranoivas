@@ -53,18 +53,23 @@ public class FinanceiroAdapter extends BaseAdapter{
 
         TextView name = (TextView) view.findViewById(R.id.nomeDebito);
 
-        ImageView img = (ImageView) view.findViewById(R.id.status);
-
         TextView qt = (TextView) view.findViewById(R.id.qtde);
 
         TextView vl = (TextView) view.findViewById(R.id.valor);
 
+        TextView pg = (TextView) view.findViewById(R.id.pagas);
+
+        TextView tpg = (TextView) view.findViewById(R.id.totalpagas);
+
+        TextView id = (TextView) view.findViewById(R.id.id_parcela);
 
         name.setText(c.nome);
-        img.setImageResource(R.drawable.ic_action_cancel);
         qt.setText(""+c.parcelas+"");
         vl.setText(""+c.valor+"");
+        pg.setText(""+c.pagas+"");
+        tpg.setText(""+c.parcelas+"");
 
+        id.setText(""+c.id+"");
 
         return  view;
     }

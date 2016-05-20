@@ -22,7 +22,7 @@ public class RepositorioScript extends Repositorio {
             {
                 "create table convidados (_id integer primary key autoincrement, qtde  integer not null,tipo integer not null,confirmado integer not null,  nome text not null)"
                , "create table config (_id integer primary key autoincrement ,noiva text not null,noivo text not null, dia integer not null, mes integer not null, ano integer not null )"
-               , "create table despesas (_id integer primary key autoincrement ,nomedebito text not null,parcelas integer not null, valortotal real not null)"
+               , "create table despesas (_id integer primary key autoincrement ,nomedebito text not null,parcelas integer not null, valortotal real not null,pagas integer not null)"
             };
 
     private static final String[] SCRIPT_DATABASE_DELETE = new String[]

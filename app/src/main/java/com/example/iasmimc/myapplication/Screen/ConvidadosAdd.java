@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.iasmimc.myapplication.Class.Convidados;
@@ -116,6 +117,8 @@ public class ConvidadosAdd extends ActionBarActivity
             else
                 sp.setSelection(2);
 
+            TextView id = (TextView) findViewById(R.id.id_convidado);
+            id.setText(it.getStringExtra("id"));
         }
     }
 
@@ -139,24 +142,29 @@ public class ConvidadosAdd extends ActionBarActivity
                 Spinner sp1 = (Spinner) findViewById(R.id.spinner);
                 Spinner sp = (Spinner) findViewById(R.id.spinner1);
 
+                TextView id = (TextView) findViewById(R.id.id_convidado);
+
+
+                if (!id.getText().toString().isEmpty())
+                    c.setId(Integer.parseInt(id.getText().toString()));
+
                 Object o = sp1.getSelectedItem();
-                if(o.toString().equals("Noiva"))
+                if (o.toString().equals("Noiva"))
                     c.setTipo(0);
                 else
                     c.setTipo(1);
 
 
                 Object o1 = sp.getSelectedItem();
-                if(o1.toString().contains("Não Confirmou Presença"))
-                   c.setConfirmado(1);
+                if (o1.toString().contains("Não Confirmou Presença"))
+                    c.setConfirmado(1);
                 else if (o1.toString().contains("Não Sabe"))
-                   c.setConfirmado(2);
+                    c.setConfirmado(2);
                 else
                     c.setConfirmado(0);
 
                 c.setNome(txt.getText().toString());
                 c.setQtde(Integer.valueOf(qtde.getText().toString()));
-
 
 
                 repositorio.inserirConvidado(c);
@@ -166,7 +174,9 @@ public class ConvidadosAdd extends ActionBarActivity
                 c.setQtde(0);
                 c.setTipo(0);
                 c.setConfirmado(0);
-                return  true;
+                setResult(0);
+                finish();
+                return true;
             }
         });
 

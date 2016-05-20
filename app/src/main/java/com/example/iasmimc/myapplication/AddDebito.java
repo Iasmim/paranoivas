@@ -26,16 +26,7 @@ public class AddDebito extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         valores = new ArrayList<>();
         setContentView(R.layout.activity_add_debito);
-        ImageView bt = (ImageView) this.findViewById(R.id.addmais);
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onButtonClick(v);
-            }
-        });
     }
-
-
 
     public void onButtonClick(View button) {
         // Creates the dialog if necessary, then shows it.
@@ -51,53 +42,12 @@ public class AddDebito extends ActionBarActivity {
 
         switch (id) {
             case 0:
-                return createExampleDialog();
+             //   return createExampleDialog();
             default:
                 return null;
         }
     }
 
-
-
-    /**
-     * Create and return an example alert dialog with an edit text box.
-     */
-    private Dialog createExampleDialog() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.addparcela);
-        builder.setMessage(R.string.valorparcela);
-
-        // Use an EditText view to get user input.
-        final EditText input = new EditText(this);
-       // input.setId(TEXT_ID);
-        builder.setView(input);
-
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                String value = input.getText().toString();
-                valores.add(value);
-                ListView viewList = (ListView) findViewById(R.id.listadividas);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(),
-                        android.R.layout.simple_list_item_1, valores);
-                viewList.setAdapter(adapter);
-
-                return;
-            }
-        });
-
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                return;
-            }
-        });
-
-        return builder.create();
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

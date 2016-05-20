@@ -3,6 +3,7 @@ package com.example.iasmimc.myapplication.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 
 import com.example.iasmimc.myapplication.Class.Convidados;
 import com.example.iasmimc.myapplication.Adapters.LegendaConvidados;
+import com.example.iasmimc.myapplication.Class.Debito;
 import com.example.iasmimc.myapplication.Class.Legendas;
 import com.example.iasmimc.myapplication.PieChart;
 import com.example.iasmimc.myapplication.PieDetailsItem;
@@ -27,6 +29,7 @@ import java.util.List;
 
 public class ChartFragment extends Fragment {
     Repositorio repositorio;
+    ListView listView;
     private static final String ARG_SECTION_NUMBER = "section_number";
     public static ChartFragment newInstance(int section_number) {
         ChartFragment fragment = new ChartFragment();
@@ -54,11 +57,17 @@ public class ChartFragment extends Fragment {
         convidados = repositorio.ListarConvidados();
 
 
+        List<Debito> debitos = new ArrayList<>();
+        debitos = repositorio.ListarDebito();
+
         int confirmados = 0;
         int nconfirmados = 0;
         int nsabem = 0;
         int danoiva = 0;
         int donoivo = 0;
+
+        int dividaspagas = 0;
+        int dividaspendentes = 0;
 
         if(convidados != null) {
 
@@ -79,84 +88,86 @@ public class ChartFragment extends Fragment {
         }
 
 
+        if(debitos != null)
+        {
+            for (Debito debito : debitos) {
+                if(debito.pagas == debito.parcelas)
+                    dividaspagas++;
+                else
+                    dividaspendentes++;
+            }
+
+        }
+
         int total = confirmados + nconfirmados + nsabem;
 
-        List<PieDetailsItem> piedata = new ArrayList<PieDetailsItem>(0);
-        int maxCount=0;
-        int itemCount=0;
-
-        //create a slice
-        PieDetailsItem item = new PieDetailsItem();
-        item.count = confirmados;
-        item.label = getResources().getString(R.string.title_confirmado);
-        item.color = Color.BLUE;
-        item.percent = confirmados;
-        piedata.add(item);
-        maxCount=maxCount+confirmados;
-
-
-        PieDetailsItem item2 = new PieDetailsItem();
-        item2.count =nconfirmados;
-        item2.label = getResources().getString(R.string.title_naoconfirmado);
-        item2.color = Color.BLACK;
-        item2.percent = nconfirmados;
-        piedata.add(item2);
-        maxCount=maxCount+nconfirmados;
-
-
-        PieDetailsItem item3 = new PieDetailsItem();
-        item3.count = nsabem;
-        item3.label =getResources().getString(R.string.title_naosabe);
-        item3.color = Color.WHITE;
-        item3.percent = nsabem;
-        piedata.add(item3);
-        maxCount=maxCount+nsabem;
-
-        ImageView pie = (ImageView)v.findViewById(R.id.pie);
-        Bitmap mBaggroundImage=Bitmap.createBitmap(200,200,Bitmap.Config.ARGB_8888);
-        PieChart piechart=new PieChart(v.getContext());
-        piechart.setLayoutParams(new LinearLayout.LayoutParams(200,200));
-        piechart.setGeometry(200, 200, 2, 2, 2, 2, 2130837504);
-        piechart.setSkinparams(getResources().getColor(android.R.color.transparent));
-        piechart.setData(piedata, maxCount);
-        piechart.invalidate();
-        piechart.draw(new Canvas(mBaggroundImage));
-        pie.setImageBitmap(mBaggroundImage);
 
         // Inflate the layout for this fragment
 
 
-        ListView listView = (ListView) v.findViewById(R.id.listchart);
+        listView = (ListView) v.findViewById(R.id.listchart);
 
         List<Legendas> lista = new ArrayList<Legendas>();
 
+        Legendas l0 = new Legendas();
+        l0.Color = 0;
+        l0.Descricao =getResources().getString(R.string.title_convidados);
+        l0.id = 99;
+        l0.qtde = -1;
+
          Legendas l1 = new Legendas();
-         l1.Color = Color.BLUE;
-         l1.Descricao =getResources().getString(R.string.title_confirmado) + "("+confirmados+")";
+         l1.Color = 0;
+         l1.Descricao =getResources().getString(R.string.title_confirmado);
+         l1.qtde = confirmados;
          l1.id = 0;
 
         Legendas l2 = new Legendas();
-        l2.Color =Color.BLACK;
-        l2.Descricao = getResources().getString(R.string.title_naoconfirmado) + "("+nconfirmados+")";
+        l2.Color =1;
+        l2.Descricao = getResources().getString(R.string.title_naoconfirmado);
+        l2.qtde = nconfirmados;
         l2.id = 2;
 
         Legendas l3 = new Legendas();
-        l3.Color = Color.WHITE;
-        l3.Descricao = getResources().getString(R.string.title_naosabe) + "("+nsabem+")";
+        l3.Color = 2;
+        l3.Descricao = getResources().getString(R.string.title_naosabe);
+        l3.qtde = nsabem;
         l3.id = 3;
 
         Legendas l4 = new Legendas();
-        l4.Color = Color.WHITE;
-        l4.Descricao =  getResources().getString(R.string.title_total)+ "("+total+")";
+        l4.Color = 3;
+        l4.Descricao =  getResources().getString(R.string.title_total);
+        l4.qtde = total;
         l4.id = 4;
 
+        Legendas l5 = new Legendas();
+        l5.Color = 5;
+        l5.Descricao =  getResources().getString(R.string.title_dividas);
+        l5.qtde = -1;
+        l5.id = 5;
+
+        Legendas l6 = new Legendas();
+        l6.Color = 6;
+        l6.Descricao =  getResources().getString(R.string.div_pagas);
+        l6.qtde = dividaspagas;
+        l6.id = 5;
+
+        Legendas l7 = new Legendas();
+        l7.Color = 7;
+        l7.qtde = dividaspendentes;
+        l7.Descricao =  getResources().getString(R.string.div_pendentes);
+        l7.id = 5;
+
+        lista.add(l0);
         lista.add(l1);
         lista.add(l2);
         lista.add(l3);
         lista.add(l4);
+        lista.add(l5);
+        lista.add(l6);
+        lista.add(l7);
         listView.setAdapter(new LegendaConvidados(listView.getContext(), lista));
-
 
        return  v;
     }
+
 }

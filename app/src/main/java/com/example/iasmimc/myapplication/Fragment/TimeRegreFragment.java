@@ -15,7 +15,7 @@ import java.util.Calendar;
 
 public  class TimeRegreFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-
+    View v;
 Repositorio repositorio;
     public  static TimeRegreFragment newInstance(int sectionNumber ) {
         TimeRegreFragment fragment = new TimeRegreFragment();
@@ -36,12 +36,24 @@ Repositorio repositorio;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        v =  inflater.inflate(R.layout.fragment_time, container, false);
+        return GetConfig();
+    }
+
+    @Override
+    public void onStart() {
+        GetConfig();
+        super.onStart();
+    }
+
+    private View GetConfig() {
+
         repositorio = new RepositorioScript(getActivity());
 
         Config cv = new Config();
 
         cv = repositorio.getConf();
-        View v =  inflater.inflate(R.layout.fragment_time, container, false);
+
         TextView noiva = (TextView)v.findViewById(R.id.nomeNoivahome);
         TextView noivo = (TextView)v.findViewById(R.id.nomeNoivohome);
 
@@ -62,11 +74,9 @@ Repositorio repositorio;
             thatDay = today;
 
 
-
         long diff =thatDay.getTimeInMillis() - today.getTimeInMillis(); //result in millis
 
         long days = diff / (24 * 60 * 60 * 1000);
-
 
 
         TextView dias = (TextView)v.findViewById(R.id.diasFaltam);

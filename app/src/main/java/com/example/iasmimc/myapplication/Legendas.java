@@ -6,5 +6,6 @@ package com.example.iasmimc.myapplication;
 public class Legendas {
     public int Color;
     public int id;
+    public int qtde;
     public String Descricao;
 }

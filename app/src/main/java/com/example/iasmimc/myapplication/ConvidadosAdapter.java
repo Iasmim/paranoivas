@@ -61,7 +61,7 @@ public class ConvidadosAdapter extends BaseAdapter {
         qtde.setText(String.format("%d",c.getQtde()));
 
 
-        TextView id = (TextView) view.findViewById(R.id.id);
+        TextView id = (TextView) view.findViewById(R.id.id_convidado);
         id.setText(String.format("%d",c.getId()));
 
         String stp = "Noiva";

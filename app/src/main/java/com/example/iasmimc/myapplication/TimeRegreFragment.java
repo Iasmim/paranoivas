@@ -1,4 +1,5 @@
 package com.example.iasmimc.myapplication;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ Repositorio repositorio;
 
         Config cv = new Config();
 
-        cv = repositorio.getConf();
+      //  cv = repositorio.getConf();
         View v =  inflater.inflate(R.layout.fragment_time, container, false);
         TextView noiva = (TextView)v.findViewById(R.id.nomeNoivahome);
         TextView noivo = (TextView)v.findViewById(R.id.nomeNoivohome);
@@ -64,5 +65,5 @@ Repositorio repositorio;
         dias.setText(""+days+"");
         return  v;
     }
-
+    
 }

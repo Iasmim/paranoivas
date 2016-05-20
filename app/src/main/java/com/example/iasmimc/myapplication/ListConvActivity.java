@@ -66,8 +66,8 @@ public  static List<Convidados> checkList;
     {
 
         _menu = menu;
-        MenuItem novo = menu.findItem(R.id.action_incluir);
-        MenuItem email = menu.findItem(R.id.action_email);
+     //   MenuItem novo = menu.findItem(R.id.action_incluir);
+      //  MenuItem email = menu.findItem(R.id.action_email);
 
         MenuItem action_conf = menu.findItem(R.id.action_conf);
         final Intent conf = new Intent(this, Configuracao.class);
@@ -80,16 +80,16 @@ public  static List<Convidados> checkList;
             }
         });
 
-        it = new Intent(this, ConvidadosAdd.class);
-        MenuItem incluir = menu.findItem(R.id.action_incluir);
-        incluir.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
+      //  it = new Intent(this, ConvidadosAdd.class);
+       // MenuItem incluir = menu.findItem(R.id.action_incluir);
+       // incluir.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+       //     @Override
+      //      public boolean onMenuItemClick(MenuItem item) {
 
-                startActivity(it);
-                return  true;
-            }
-        });
+       //         startActivity(it);
+       //         return  true;
+       //     }
+     //   });
         MenuItem trash = menu.findItem(R.id.action_excluir);
         trash.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -105,12 +105,12 @@ public  static List<Convidados> checkList;
                 alertDialog.setPositiveButton(R.string.alert_yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        TextView id = (TextView) rootView.findViewById(R.id.id);
+                        TextView id = (TextView) rootView.findViewById(R.id.id_convidado);
                         repositorio.deletarConvidados(currentConvidado.getId());
                         ListView listView = (ListView) rootView.findViewById(R.id.listview);
                         repositorio = new RepositorioScript(getBaseContext());
                         List<Convidados> lista = new ArrayList<>();
-                        lista = repositorio.ListarConvidados();
+                      //  lista = repositorio.ListarConvidados();
                         listView.setAdapter(new ConvidadosAdapter(listView.getContext(), lista));
                     }
                 });
@@ -131,16 +131,16 @@ public  static List<Convidados> checkList;
             }
         });
 
-        MenuItem action_debito = menu.findItem(R.id.action_divida);
-        final Intent deb = new Intent(this, AddDebito.class);
-        action_debito.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+      //  MenuItem action_debito = menu.findItem(R.id.action_divida);
+       // final Intent deb = new Intent(this, AddDebito.class);
+        /*action_debito.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
                 startActivity(deb);
                 return  true;
             }
-        });
+        });*/
 
 /*
         edit.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -177,7 +177,7 @@ public  static List<Convidados> checkList;
 
         TextView name = (TextView) view.findViewById(R.id.convidado);
         TextView qtde = (TextView) view.findViewById(R.id.qtde);
-        TextView id = (TextView) view.findViewById(R.id.id);
+        TextView id = (TextView) view.findViewById(R.id.id_convidado);
 
         params.putString("nome",name.getText().toString());
         params.putString("qtde",qtde.getText().toString());
@@ -219,7 +219,7 @@ public  static List<Convidados> checkList;
 
             List<Convidados> lista = new ArrayList<>();
 
-            lista = repositorio.ListarConvidados();
+         //   lista = repositorio.ListarConvidados();
 
             listView.setAdapter(new ConvidadosAdapter(listView.getContext(), lista));
 
@@ -232,6 +232,7 @@ public  static List<Convidados> checkList;
                     callListInvides(view, parent, position);
                     if(!ex.isVisible())
                        startActivity(intentconvidadoCurrent);
+
                 }
             });
 

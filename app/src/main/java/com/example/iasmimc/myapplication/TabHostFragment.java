@@ -14,7 +14,6 @@ import android.widget.TabHost;
 import com.example.iasmimc.myapplication.Adapters.MyPageAdapter;
 import com.example.iasmimc.myapplication.Fragment.ChartFragment;
 import com.example.iasmimc.myapplication.Fragment.FinanceiroFragment;
-import com.example.iasmimc.myapplication.Fragment.OpcaoFornecedoresFragmento;
 import com.example.iasmimc.myapplication.Fragment.TimeRegreFragment;
 import com.example.iasmimc.myapplication.Screen.ListConvActivity;
 
@@ -89,13 +88,11 @@ public class TabHostFragment extends Fragment implements TabHost.OnTabChangeList
 
         Fragment f1 = TimeRegreFragment.newInstance(0);
         Fragment f2 = ListConvActivity.PlaceholderFragment.newInstance(1);
-        Fragment f3 = ChartFragment.newInstance(2);
-        Fragment f4 = OpcaoFornecedoresFragmento.newInstance(3);
-        Fragment f5 = FinanceiroFragment.newInstance(4);
+        Fragment f3 = FinanceiroFragment.newInstance(2);
+        Fragment f5 = ChartFragment.newInstance(3);
         fList.add(f1);
         fList.add(f2);
         fList.add(f3);
-        fList.add(f4);
         fList.add(f5);
         return fList;
     }
@@ -110,13 +107,11 @@ public class TabHostFragment extends Fragment implements TabHost.OnTabChangeList
         Drawable home = getResources().getDrawable(R.drawable.ic_action_home);
         Drawable list = getResources().getDrawable(R.drawable.ic_action_list_2);
         Drawable chart = getResources().getDrawable(R.drawable.ic_action_pie_chart);
-        Drawable debt = getResources().getDrawable(R.drawable.ic_action_search);
         Drawable chat = getResources().getDrawable(R.drawable.ic_action_creditcard);
         AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab1").setIndicator("",home));
         AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab2").setIndicator("",list));
-        AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab3").setIndicator("",chart));
-        AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab4").setIndicator("",debt));
-        AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab4").setIndicator("",chat));
+        AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab3").setIndicator("",chat));
+        AddTab((ListConvActivity) getActivity(), mTabHost, mTabHost.newTabSpec("Tab4").setIndicator("",chart));
         mTabHost.setOnTabChangedListener(this);
     }
 }

@@ -17,6 +17,10 @@ import com.example.iasmimc.myapplication.R;
 import com.example.iasmimc.myapplication.Repositorio;
 import com.example.iasmimc.myapplication.RepositorioScript;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Configuracao extends ActionBarActivity {
     private Button botao;
     Repositorio repositorio;
@@ -77,18 +81,50 @@ public class Configuracao extends ActionBarActivity {
                 c.setMes(month);
                 c.setAno(year);
 
+                Calendar cal = Calendar.getInstance();
 
-                repositorio.atulizaConfig(c);
+                Calendar calmarrie = Calendar.getInstance();
+                calmarrie.set(Calendar.YEAR, year);
+                calmarrie.set(Calendar.DAY_OF_MONTH, day);
+                calmarrie.set(Calendar.MONTH, month);
 
-                Toast.makeText(getBaseContext(),"Dados salvos com sucesso.",Toast.LENGTH_SHORT).show();
-                finish();
-                return  true;
+                SimpleDateFormat dfDate = new SimpleDateFormat("dd-MMM-yyyy");
+
+                Date today = cal.getTime();
+                Date marrie = calmarrie.getTime();
+                int retorno = compareTwoDates(today, marrie);
+
+                if(retorno == 1) {
+                    Toast.makeText(getBaseContext(), R.string.datainvalida, Toast.LENGTH_SHORT).show();
+                    return  false;
+                }
+                else {
+
+                    repositorio.atulizaConfig(c);
+
+                    Toast.makeText(getBaseContext(), "Dados salvos com sucesso.", Toast.LENGTH_SHORT).show();
+                    setResult(1);
+                    finish();
+                    return  true;
+                }
+
             }
         });
 
         return true;
     }
+    public static int compareTwoDates(Date date1, Date date2) {
+        if (date1 != null && date2 != null) {
+            int retVal = date1.compareTo(date2);
 
+            if (retVal > 0)
+                return 1; // date1 is greatet than date2
+            else if (retVal == 0) // both dates r equal
+                return 0;
+
+        }
+        return -1; // date1 is less than date2
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

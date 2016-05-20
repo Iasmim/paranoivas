@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.FieldPosition;
@@ -67,6 +69,32 @@ public class FinanceiroFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // TODO Add your menu entries here
+        inflater.inflate(R.menu.main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 1:
+                System.exit(1);
+                break;
+
+            case 2:
+                Toast.makeText(getActivity(), "Testando 1 2 3...", Toast.LENGTH_LONG);
+                break;
+        }
+        return true;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,9 +107,13 @@ public class FinanceiroFragment extends Fragment {
 
         List<Debito> lista = new ArrayList<>();
 
-        lista = repositorio.ListarDebito();
+      //  lista = repositorio.ListarDebito();
 
         listView.setAdapter(new FinanceiroAdapter(listView.getContext(), lista));
+
+
+
+
         return  rootView;
     }
 

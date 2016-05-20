@@ -32,7 +32,7 @@ public class Configuracao extends ActionBarActivity {
 
         Config cv = new Config();
 
-        cv = repositorio.getConf();
+        //cv = repositorio.getConf();
 
         if(cv.getNoiva() != null)
         {
@@ -81,7 +81,7 @@ public class Configuracao extends ActionBarActivity {
                 c.setAno(year);
 
 
-                repositorio.atulizaConfig(c);
+               // repositorio.atulizaConfig(c);
 
                 Toast.makeText(getBaseContext(),"Dados salvos com sucesso.",Toast.LENGTH_SHORT).show();
                 finish();

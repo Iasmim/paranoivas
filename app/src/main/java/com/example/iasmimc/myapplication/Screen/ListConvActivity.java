@@ -36,24 +36,28 @@ public class ListConvActivity extends ActionBarActivity {
 public  static List<Convidados> checkList;
     public static Repositorio repositorio;
     public static Intent intentconvidadoCurrent;
-    public static Convidados currentConvidado;
+    public static List<Convidados> currentConvidado;
     static ActionBar actionBar;
     static Menu _menu;
     static Intent it;
     static View rootView;
+    static ListView listView;
+    public ListConvActivity()
+    {
+        currentConvidado = new ArrayList<>();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkList = new ArrayList<>();
         setContentView(R.layout.activity_principal);
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new TabHostFragment())
                     .commit();
         }
-
-
-
 
     }
 
@@ -84,7 +88,7 @@ public  static List<Convidados> checkList;
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
-                startActivity(conf);
+                startActivityForResult(conf, 1);
                 return  true;
             }
         });
@@ -105,8 +109,14 @@ public  static List<Convidados> checkList;
                 alertDialog.setPositiveButton(R.string.alert_yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        TextView id = (TextView) rootView.findViewById(R.id.id);
-                        repositorio.deletarConvidados(currentConvidado.getId());
+                        TextView id = (TextView) rootView.findViewById(R.id.id_convidado);
+
+                        for (Convidados convidados : currentConvidado) {
+                            repositorio.deletarConvidados(convidados.getId());
+
+                        }
+
+
                         ListView listView = (ListView) rootView.findViewById(R.id.listview);
                         repositorio = new RepositorioScript(getBaseContext());
                         List<Convidados> lista = new ArrayList<>();
@@ -158,14 +168,14 @@ public  static List<Convidados> checkList;
 
         TextView name = (TextView) view.findViewById(R.id.convidado);
         TextView qtde = (TextView) view.findViewById(R.id.qtde);
-        TextView id = (TextView) view.findViewById(R.id.id);
+        TextView id = (TextView) view.findViewById(R.id.id_convidado);
 
         params.putString("nome",name.getText().toString());
         params.putString("qtde",qtde.getText().toString());
         params.putString("id",id.getText().toString());
 
         Convidados c = (Convidados)parent.getItemAtPosition(position);
-        currentConvidado = c;
+        currentConvidado.add(c);
         if(c.getTipo() == 0)
             params.putString("tipo","0");
         else
@@ -194,7 +204,7 @@ public  static List<Convidados> checkList;
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             rootView = inflater.inflate(R.layout.fragment_principal, container, false);
-
+            listView = (ListView) rootView.findViewById(R.id.listview);
 
             FloatingActionButton f = (FloatingActionButton) rootView.findViewById(R.id.pink_icon);
             it = new Intent(rootView.getContext(), ConvidadosAdd.class);
@@ -202,13 +212,11 @@ public  static List<Convidados> checkList;
                 @Override
                 public void onClick(View v) {
 
-                    startActivity(it);
+                    startActivityForResult(it, 0);
 
                 }
             });
 
-
-            ListView listView = (ListView) rootView.findViewById(R.id.listview);
 
             repositorio = new  RepositorioScript(rootView.getContext());
 
@@ -225,11 +233,11 @@ public  static List<Convidados> checkList;
                     MenuItem ex = _menu.findItem(R.id.action_excluir);
 
                     callListInvides(view, parent, position);
-                    if(!ex.isVisible())
-                       startActivity(intentconvidadoCurrent);
+                    if(!ex.isVisible()) {
+                        startActivityForResult(intentconvidadoCurrent, 0);
+                    }
                 }
             });
-
 
 
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -247,6 +255,7 @@ public  static List<Convidados> checkList;
             return rootView;
         }
 
+
         public  static void  callListInvidesDelete(View view,AdapterView<?> parent,int position)
         {
 
@@ -259,7 +268,17 @@ public  static List<Convidados> checkList;
         }
 
 
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            if(requestCode == 0)
+            {
+                List<Convidados> lista = new ArrayList<>();
 
+                lista = repositorio.ListarConvidados();
+
+                listView.setAdapter(new ConvidadosAdapter(listView.getContext(), lista));
+            }
+        }
 
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();

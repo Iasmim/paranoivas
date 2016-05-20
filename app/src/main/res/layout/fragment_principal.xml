@@ -17,6 +17,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        fab:fab_colorNormal="@color/pink"/>
 
 </RelativeLayout>

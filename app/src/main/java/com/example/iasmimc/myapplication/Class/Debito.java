@@ -7,5 +7,6 @@ public class Debito {
     public String nome;
     public int parcelas;
     public double valor;
-    public  int id;
+    public  int pagas;
+    public  long id;
 }

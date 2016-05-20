@@ -49,7 +49,10 @@ public class Repositorio {
     public  long inserirConvidado(Convidados conv)
     {
         ContentValues values = new ContentValues();
-       // values.put("id", conv.getId());
+
+        if(conv.getId() != 0)
+            deletarConvidados(conv.getId());
+
         values.put("nome", conv.getNome());
         values.put("qtde", conv.getQtde());
         values.put("tipo", conv.getTipo());
@@ -80,30 +83,10 @@ public class Repositorio {
         String _id = String.valueOf(id);
         String[] whereArgs = new String[]{_id};
 
-        int count = db.delete(NOME_TABELA_CONVIDADOS, where , whereArgs);
+        int count = db.delete(NOME_TABELA_CONVIDADOS, where, whereArgs);
         return  count;
     }
 
-
-    public long salvarForne(Fornecedor f)
-    {
-        long id = f.getID();
-        if(id != 0)
-            id = inserirForne(f);
-
-        return  id;
-    }
-    public  long inserirForne(Fornecedor f)
-    {
-        ContentValues values = new ContentValues();
-        values.put("id", f.getID());
-        values.put("nome", f.getNome());
-        values.put("custo", f.getCusto());
-        values.put("tipo", f.getTipo());
-
-        long id = db.insert(NOME_TABELA_FORNECEDORES, "", values);
-        return  id;
-    }
 
     public int deletarForne(Long id)
     {
@@ -111,7 +94,7 @@ public class Repositorio {
         String _id = String.valueOf(id);
         String[] whereArgs = new String[]{_id};
 
-        int count = db.delete(NOME_TABELA_FORNECEDORES, where , whereArgs);
+        int count = db.delete(NOME_TABELA_FORNECEDORES, where, whereArgs);
         return  count;
     }
 
@@ -170,7 +153,7 @@ public class Repositorio {
 
     public List<Debito> ListarDebito()
     {
-        Cursor c = db.query(NOME_DESPESAS, new String[]{"_id","nomedebito","parcelas","valortotal"}, null, null, null, null, null, null);
+        Cursor c = db.query(NOME_DESPESAS, new String[]{"_id","nomedebito","parcelas","valortotal", "pagas"}, null, null, null, null, null, null);
 
         List<Debito> cv = new ArrayList<Debito>();
 
@@ -182,7 +165,8 @@ public class Repositorio {
                 d.nome = (c.getString(c.getColumnIndex("nomedebito")));
                 d.parcelas = (c.getInt(c.getColumnIndex("parcelas")));
                 d.valor = (c.getDouble(c.getColumnIndex("valortotal")));
-
+                d.pagas = (c.getInt(c.getColumnIndex("pagas")));
+                d.id = (c.getInt(c.getColumnIndex("_id")));
                 cv.add(d);
             }
             while (c.moveToNext());
@@ -193,14 +177,19 @@ public class Repositorio {
 
     }
 
+
+
     public  long inserirDebito(Debito d)
     {
         ContentValues values = new ContentValues();
+       if(d.id != 0)
+           deletarDebito(d.id);
 
         values.put("nomedebito", d.nome);
         values.put("parcelas", d.parcelas);
         values.put("valortotal",d.valor);
-
+        values.put("pagas",d.pagas);
+       // values.put("id",d.id);
         long id = db.insert(NOME_DESPESAS, "", values);
         return  id;
     }
