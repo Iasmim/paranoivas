@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by iasmim.c on 3/9/2015.
  */
-public class LegendaConvidados extends BaseAdapter {
+public class  LegendaConvidados extends BaseAdapter {
     private Context context;
     private List<Legendas> lista;
 
@@ -26,6 +26,7 @@ public class LegendaConvidados extends BaseAdapter {
     {
         this.context = context;
         this.lista = lista;
+
     }
     @Override
     public int getCount() {
@@ -49,6 +50,9 @@ public class LegendaConvidados extends BaseAdapter {
         View view = inflater.inflate(R.layout.legenda, null);
         return getLegenda(position, view);
     }
+
+
+
 
     private View getLegenda(int position, View view) {
         Legendas c = lista.get(position);
@@ -76,4 +80,5 @@ public class LegendaConvidados extends BaseAdapter {
 
         return  view;
     }
+
 }

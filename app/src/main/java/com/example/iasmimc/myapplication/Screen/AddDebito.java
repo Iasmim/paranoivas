@@ -94,11 +94,17 @@ public class AddDebito extends ActionBarActivity {
                 if(!idp.getText().toString().isEmpty())
                     c.id = Integer.parseInt(idp.getText().toString());
 
-                repositorio.inserirDebito(c);
-                Toast.makeText(getApplicationContext(), R.string.txtDividacriada, Toast.LENGTH_SHORT).show();
-                setResult(0);
-                finish();
-                return true;
+                if(c.pagas > c.parcelas) {
+                    Toast.makeText(getApplicationContext(), R.string.numparcelasinvalidas, Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+                else {
+                    repositorio.inserirDebito(c);
+                    Toast.makeText(getApplicationContext(), R.string.txtDividacriada, Toast.LENGTH_SHORT).show();
+                    setResult(0);
+                    finish();
+                    return true;
+                }
             }
         });
 

@@ -31,6 +31,7 @@ public class ChartFragment extends Fragment {
     Repositorio repositorio;
     ListView listView;
     private static final String ARG_SECTION_NUMBER = "section_number";
+    View v;
     public static ChartFragment newInstance(int section_number) {
         ChartFragment fragment = new ChartFragment();
         Bundle args = new Bundle();
@@ -48,9 +49,18 @@ public class ChartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.fragment_chart, container, false);
+        v = inflater.inflate(R.layout.fragment_chart, container, false);
+        updateChart(v);
+        return v;
+    }
 
+    @Override
+    public void onStart() {
+        updateChart(v);
+        super.onStart();
+    }
 
+    private void updateChart(View v) {
         repositorio = new RepositorioScript(v.getContext());
 
         List<Convidados> convidados = new ArrayList<>();
@@ -68,6 +78,10 @@ public class ChartFragment extends Fragment {
 
         int dividaspagas = 0;
         int dividaspendentes = 0;
+
+        double valorpendente = 0;
+        double valortot = 0;
+        double valorpago = 0;
 
         if(convidados != null) {
 
@@ -91,12 +105,18 @@ public class ChartFragment extends Fragment {
         if(debitos != null)
         {
             for (Debito debito : debitos) {
-                if(debito.pagas == debito.parcelas)
+                if (debito.pagas == debito.parcelas)
                     dividaspagas++;
                 else
                     dividaspendentes++;
-            }
 
+                double vpp = debito.valor / debito.parcelas;
+                double vp = vpp * debito.pagas;
+
+                valorpago += vp;
+                valortot += debito.valor;
+            }
+            valorpendente = valortot - valorpago;
         }
 
         int total = confirmados + nconfirmados + nsabem;
@@ -115,11 +135,11 @@ public class ChartFragment extends Fragment {
         l0.id = 99;
         l0.qtde = -1;
 
-         Legendas l1 = new Legendas();
-         l1.Color = 0;
-         l1.Descricao =getResources().getString(R.string.title_confirmado);
-         l1.qtde = confirmados;
-         l1.id = 0;
+        Legendas l1 = new Legendas();
+        l1.Color = 0;
+        l1.Descricao =getResources().getString(R.string.title_confirmado);
+        l1.qtde = confirmados;
+        l1.id = 0;
 
         Legendas l2 = new Legendas();
         l2.Color =1;
@@ -143,19 +163,40 @@ public class ChartFragment extends Fragment {
         l5.Color = 5;
         l5.Descricao =  getResources().getString(R.string.title_dividas);
         l5.qtde = -1;
-        l5.id = 5;
+        l5.id = 6;
 
         Legendas l6 = new Legendas();
         l6.Color = 6;
         l6.Descricao =  getResources().getString(R.string.div_pagas);
         l6.qtde = dividaspagas;
-        l6.id = 5;
+        l6.id = 7;
 
         Legendas l7 = new Legendas();
         l7.Color = 7;
         l7.qtde = dividaspendentes;
         l7.Descricao =  getResources().getString(R.string.div_pendentes);
-        l7.id = 5;
+        l7.id = 8;
+
+
+
+        Legendas l8 = new Legendas();
+        l8.Color = 5;
+        l8.Descricao =  getResources().getString(R.string.valortotal);
+        l8.qtde = valortot;
+        l8.id = 9;
+
+        Legendas l9 = new Legendas();
+        l9.Color = 6;
+        l9.Descricao =  getResources().getString(R.string.pendente);
+        l9.qtde = valorpendente;
+        l9.id = 10;
+
+        Legendas l10 = new Legendas();
+        l10.Color = 7;
+        l10.qtde = valorpago;
+        l10.Descricao =  getResources().getString(R.string.pago);
+        l10.id = 11;
+
 
         lista.add(l0);
         lista.add(l1);
@@ -165,9 +206,10 @@ public class ChartFragment extends Fragment {
         lista.add(l5);
         lista.add(l6);
         lista.add(l7);
+        lista.add(l8);
+        lista.add(l9);
+        lista.add(l10);
         listView.setAdapter(new LegendaConvidados(listView.getContext(), lista));
-
-       return  v;
     }
 
 }

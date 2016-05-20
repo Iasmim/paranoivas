@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.iasmimc.myapplication.Adapters.ConvidadosAdapter;
 import com.example.iasmimc.myapplication.Adapters.FinanceiroAdapter;
+import com.example.iasmimc.myapplication.Adapters.LegendaConvidados;
 import com.example.iasmimc.myapplication.Class.Convidados;
 import com.example.iasmimc.myapplication.Class.Debito;
 import com.example.iasmimc.myapplication.FloatingActionButton;

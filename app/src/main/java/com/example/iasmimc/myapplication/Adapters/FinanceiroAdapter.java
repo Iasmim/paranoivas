@@ -1,6 +1,8 @@
 package com.example.iasmimc.myapplication.Adapters;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +64,12 @@ public class FinanceiroAdapter extends BaseAdapter{
         TextView tpg = (TextView) view.findViewById(R.id.totalpagas);
 
         TextView id = (TextView) view.findViewById(R.id.id_parcela);
+
+
+        if(c.pagas == c.parcelas)
+            vl.setTextColor(ColorStateList.valueOf(Color.BLUE));
+        else
+            vl.setTextColor(ColorStateList.valueOf(Color.RED));
 
         name.setText(c.nome);
         qt.setText(""+c.parcelas+"");

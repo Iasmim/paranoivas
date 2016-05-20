@@ -60,5 +60,8 @@
     <string name="myforne">Meus Fornecedores</string>
     <string name="textforn">Deseja adicionar este fornecedor como devedor?</string>
     <string name="txtDividacriada">Dívida Adicionada.</string>
-
+    <string name="numparcelasinvalidas">O número de parcelas pagas não pode ser maior que o total de parcelas</string>
+    <string name="valortotal">Valor Total</string>
+    <string name="pendente">Valor Pendente</string>
+    <string name="pago">Valor Pago</string>
 </resources>
