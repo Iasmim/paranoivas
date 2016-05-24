@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Nome no Convite"
+        android:text="@string/nomenoconvite"
         />
     <EditText
      android:layout_width="fill_parent"
@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Números de Convidados"
+        android:text="@string/numerodeconvidados"
         />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         android:inputType="number"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Quantidade"
+        android:hint="@string/quantidadeconvidados"
         android:text="0"
         android:id="@+id/qtdeConv"/>
 
@@ -41,15 +41,51 @@
 
              />
         </LinearLayout>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/convidadode"
+        />
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/grouptipo"
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/radio_noiva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Noiva" />
+        <RadioButton android:id="@+id/radio_noivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Noivo" />
+    </RadioGroup>
 
-    <Spinner
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner" />
-    <Spinner
+        android:text="@string/confirmoupresença"
+        />
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner1" />
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/convidadosim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/sim" />
+        <RadioButton android:id="@+id/convidadono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no" />
+        <RadioButton android:id="@+id/convidadotalvez"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/talvez" />
+    </RadioGroup>
+
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

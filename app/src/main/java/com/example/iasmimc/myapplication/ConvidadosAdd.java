@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +50,7 @@ public class ConvidadosAdd extends ActionBarActivity
             }
         });
 
-        array_spinner=new String[2];
+       /* array_spinner=new String[2];
         array_spinner[0]="Noiva";
         array_spinner[1]="Noivo";
         Spinner s = (Spinner) findViewById(R.id.spinner);
@@ -91,7 +92,7 @@ public class ConvidadosAdd extends ActionBarActivity
 
             }
         });
-
+*/
 
        Intent it = getIntent();
 
@@ -105,7 +106,7 @@ public class ConvidadosAdd extends ActionBarActivity
             EditText qtde = (EditText) findViewById(R.id.qtdeConv);
             qtde.setText(it.getStringExtra("qtde"));
 
-            Spinner sp1 = (Spinner) findViewById(R.id.spinner);
+           /* Spinner sp1 = (Spinner) findViewById(R.id.spinner);
             if(it.getStringExtra("tipo").equals("0"))
               sp1.setSelection(0);
             else
@@ -117,7 +118,7 @@ public class ConvidadosAdd extends ActionBarActivity
             else  if(it.getStringExtra("confirma").equals("1"))
                 sp.setSelection(1);
             else
-                sp.setSelection(2);
+                sp.setSelection(2);*/
 
 
 
@@ -141,15 +142,15 @@ public class ConvidadosAdd extends ActionBarActivity
 
                 EditText txt = (EditText) findViewById(R.id.nomeConv);
                 EditText qtde = (EditText) findViewById(R.id.qtdeConv);
-                Spinner sp1 = (Spinner) findViewById(R.id.spinner);
-                Spinner sp = (Spinner) findViewById(R.id.spinner1);
+                RadioButton sp1 = (RadioButton) findViewById(R.id.radio_noiva);
+                RadioButton sp = (RadioButton) findViewById(R.id.radio_noivo);
 
-                Object o = sp1.getSelectedItem();
-                if (o.toString().equals("Noiva"))
+
+                if (sp1.isChecked())
                     c.setTipo(0);
                 else
                     c.setTipo(1);
-
+ /*
 
                 Object o1 = sp.getSelectedItem();
                 if (o1.toString().contains("Não Confirmou Presença"))
@@ -157,7 +158,7 @@ public class ConvidadosAdd extends ActionBarActivity
                 else if (o1.toString().contains("Não Sabe"))
                     c.setConfirmado(2);
                 else
-                    c.setConfirmado(0);
+                    c.setConfirmado(0);*/
 
                 c.setNome(txt.getText().toString());
                 c.setQtde(Integer.valueOf(qtde.getText().toString()));
@@ -168,8 +169,8 @@ public class ConvidadosAdd extends ActionBarActivity
                 Toast.makeText(getApplicationContext(), "Contato Criado.", Toast.LENGTH_SHORT).show();
                 txt.setText("");
                 qtde.setText(0);
-                sp1.setSelection(0);
-                sp.setSelection(0);
+                //sp1.setSelection(0);
+               // sp.setSelection(0);
 
                 return true;
             }

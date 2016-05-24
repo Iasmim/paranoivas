@@ -38,11 +38,11 @@ Repositorio repositorio;
 
       //  cv = repositorio.getConf();
         View v =  inflater.inflate(R.layout.fragment_time, container, false);
-        TextView noiva = (TextView)v.findViewById(R.id.nomeNoivahome);
-        TextView noivo = (TextView)v.findViewById(R.id.nomeNoivohome);
+       // TextView noiva = (TextView)v.findViewById(R.id.nomeNoivahome);
+       // TextView noivo = (TextView)v.findViewById(R.id.nomeNoivohome);
 
-        noiva.setText(cv.getNoiva());
-        noivo.setText(cv.getNoivo());
+       // noiva.setText(cv.getNoiva());
+       // noivo.setText(cv.getNoivo());
 
         int dia = cv.getDia();
         int mes = cv.getMes();

@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Nome da Dívida"/>
+        android:text="@string/NomedaDvida"/>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Valor da Parcela"/>
+        android:text="@string/ValordaParcela"/>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -34,13 +34,13 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Quantidades de Parcelas"
+            android:text="@string/QuantidadesdeParcelas"
             android:layout_weight="0.5"/>
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Parcelas Pagas"
+            android:text="@string/ParcelasPagas"
             android:layout_weight="1"/>
 
     </LinearLayout>

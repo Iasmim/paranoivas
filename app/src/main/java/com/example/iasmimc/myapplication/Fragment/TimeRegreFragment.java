@@ -54,11 +54,11 @@ Repositorio repositorio;
 
         cv = repositorio.getConf();
 
-        TextView noiva = (TextView)v.findViewById(R.id.nomeNoivahome);
-        TextView noivo = (TextView)v.findViewById(R.id.nomeNoivohome);
+       // TextView noiva = (TextView)v.findViewById(R.id.nomeNoivahome);
+       // TextView noivo = (TextView)v.findViewById(R.id.nomeNoivohome);
 
-        noiva.setText(cv.getNoiva());
-        noivo.setText(cv.getNoivo());
+        //noiva.setText(cv.getNoiva());
+       // noivo.setText(cv.getNoivo());
 
         int dia = cv.getDia();
         int mes = cv.getMes();

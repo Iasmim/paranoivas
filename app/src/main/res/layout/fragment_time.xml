@@ -7,15 +7,14 @@
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-
         android:orientation="horizontal"
         android:gravity="center"   >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Faltam"
+            android:text="@string/faltamhome"
             android:textStyle="bold"
-            android:textSize="60dp"/>
+            android:textSize="40dp"/>
         </LinearLayout>
 
 <LinearLayout
@@ -42,7 +41,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:text="Dias"
+        android:text="@string/diashome"
         android:textStyle="bold"
         android:textSize="20dp"
         />
@@ -57,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Para o grande dia!"
+            android:text="@string/frasehome"
             android:textStyle="bold"
             android:textSize="30dp"/>
 
@@ -67,37 +66,5 @@
         android:layout_width="fill_parent"
         android:orientation="horizontal"
         android:gravity="center">
-     <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="fill_parent"
-         android:src="@drawable/noiva"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:src="@drawable/ic_action_heart"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:src="@drawable/noivo"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="Noiva"
-            android:textSize="20dp"
-            android:layout_marginRight="50dp"
-            android:id="@+id/nomeNoivahome"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:textSize="20dp"
-            android:layout_marginLeft="50dp"
-            android:id="@+id/nomeNoivohome"/>
     </LinearLayout>
 </GridLayout>

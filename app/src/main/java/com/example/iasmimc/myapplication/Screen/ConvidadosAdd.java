@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,48 +48,6 @@ public class ConvidadosAdd extends ActionBarActivity
             }
         });
 
-        array_spinner=new String[2];
-        array_spinner[0]="Noiva";
-        array_spinner[1]="Noivo";
-        Spinner s = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, array_spinner);
-        s.setAdapter(adapter);
-
-         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-         @Override
-         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-             Log.d("Array Apiner","");
-         }
-
-         @Override
-         public void onNothingSelected(AdapterView<?> parent) {
-
-
-         }
-     });
-
-
-        array_spinner1=new String[3];
-        array_spinner1[0]="Confirmou Presença";
-        array_spinner1[1]="Não Confirmou Presença";
-        array_spinner1[2]="Não Sabe";
-        Spinner s1 = (Spinner) findViewById(R.id.spinner1);
-        ArrayAdapter adapter1 = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, array_spinner1);
-        s1.setAdapter(adapter1);
-
-        s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("Array Apiner","");
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
 
        Intent it = getIntent();
@@ -103,7 +62,7 @@ public class ConvidadosAdd extends ActionBarActivity
             EditText qtde = (EditText) findViewById(R.id.qtdeConv);
             qtde.setText(it.getStringExtra("qtde"));
 
-            Spinner sp1 = (Spinner) findViewById(R.id.spinner);
+           /* Spinner sp1 = (Spinner) findViewById(R.id.spinner);
             if(it.getStringExtra("tipo").equals("0"))
               sp1.setSelection(0);
             else
@@ -115,7 +74,7 @@ public class ConvidadosAdd extends ActionBarActivity
             else  if(it.getStringExtra("confirma").equals("1"))
                 sp.setSelection(1);
             else
-                sp.setSelection(2);
+                sp.setSelection(2);*/
 
             TextView id = (TextView) findViewById(R.id.id_convidado);
             id.setText(it.getStringExtra("id"));
@@ -139,26 +98,23 @@ public class ConvidadosAdd extends ActionBarActivity
 
                 EditText txt = (EditText) findViewById(R.id.nomeConv);
                 EditText qtde = (EditText) findViewById(R.id.qtdeConv);
-                Spinner sp1 = (Spinner) findViewById(R.id.spinner);
-                Spinner sp = (Spinner) findViewById(R.id.spinner1);
 
-                TextView id = (TextView) findViewById(R.id.id_convidado);
+                RadioButton sp1 = (RadioButton) findViewById(R.id.radio_noiva);
+                RadioButton sp = (RadioButton) findViewById(R.id.radio_noivo);
 
 
-                if (!id.getText().toString().isEmpty())
-                    c.setId(Integer.parseInt(id.getText().toString()));
+                RadioButton sim = (RadioButton) findViewById(R.id.convidadosim);
+                RadioButton no = (RadioButton) findViewById(R.id.convidadono);
+                RadioButton talvez = (RadioButton) findViewById(R.id.convidadotalvez);
 
-                Object o = sp1.getSelectedItem();
-                if (o.toString().equals("Noiva"))
+                if (sp1.isChecked())
                     c.setTipo(0);
                 else
                     c.setTipo(1);
 
-
-                Object o1 = sp.getSelectedItem();
-                if (o1.toString().contains("Não Confirmou Presença"))
+                if (no.isChecked())
                     c.setConfirmado(1);
-                else if (o1.toString().contains("Não Sabe"))
+                else if (talvez.isChecked())
                     c.setConfirmado(2);
                 else
                     c.setConfirmado(0);
