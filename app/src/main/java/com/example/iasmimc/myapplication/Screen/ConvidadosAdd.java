@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,6 +21,9 @@ import com.example.iasmimc.myapplication.Class.Convidados;
 import com.example.iasmimc.myapplication.R;
 import com.example.iasmimc.myapplication.Repositorio;
 import com.example.iasmimc.myapplication.RepositorioScript;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 
 public class ConvidadosAdd extends ActionBarActivity
@@ -27,6 +31,7 @@ public class ConvidadosAdd extends ActionBarActivity
     private String  array_spinner[];
     private String  array_spinner1[];
     public static Repositorio repositorio;
+    private AdView adView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,25 +67,76 @@ public class ConvidadosAdd extends ActionBarActivity
             EditText qtde = (EditText) findViewById(R.id.qtdeConv);
             qtde.setText(it.getStringExtra("qtde"));
 
-           /* Spinner sp1 = (Spinner) findViewById(R.id.spinner);
-            if(it.getStringExtra("tipo").equals("0"))
-              sp1.setSelection(0);
-            else
-                sp1.setSelection(1);
+            RadioButton sp1 = (RadioButton) findViewById(R.id.radio_noiva);
+            RadioButton sp = (RadioButton) findViewById(R.id.radio_noivo);
 
-            Spinner sp = (Spinner) findViewById(R.id.spinner1);
-            if(it.getStringExtra("confirma").equals("0"))
-                sp.setSelection(0);
-            else  if(it.getStringExtra("confirma").equals("1"))
-                sp.setSelection(1);
+
+            RadioButton sim = (RadioButton) findViewById(R.id.convidadosim);
+            RadioButton no = (RadioButton) findViewById(R.id.convidadono);
+            RadioButton talvez = (RadioButton) findViewById(R.id.convidadotalvez);
+
+
+            if(it.getStringExtra("tipo").equals("0"))
+              sp1.setChecked(true);
             else
-                sp.setSelection(2);*/
+                sp.setChecked(true);
+
+
+            if(it.getStringExtra("confirma").equals("0"))
+                sim.setChecked(true);
+            else  if(it.getStringExtra("confirma").equals("1"))
+               no.setChecked(true);
+            else
+                talvez.setChecked(true);
 
             TextView id = (TextView) findViewById(R.id.id_convidado);
             id.setText(it.getStringExtra("id"));
         }
+
+
+        // Criando o AdView.
+        adView = new AdView(this);
+        adView.setAdUnitId("ca-app-pub-2299446572371245/4046990617");
+        adView.setAdSize(AdSize.BANNER);
+
+
+
+        // Recuperando o layout onde o anúncio vai ser exibido
+        LinearLayout layout = (LinearLayout)findViewById(R.id.layoutaddconvidado);
+
+        // Adicionando o AdView no layout.
+        layout.addView(adView,8);
+
+        // Fazendo uma requisição para recuperar o anúncio.
+        // AdRequest adRequest = new AdRequest.Builder().build();
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("ca-app-pub-2299446572371245/4046990617")
+                .build();
+
+        // Adicionando a requisição no AdView.
+        adView.loadAd(adRequest);
+    }
+    @Override
+    protected void onPause() {
+        //Pausando o AdView ao pausar a activity
+        adView.pause();
+        super.onPause();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Resumindo o AdView ao resumir a activity
+        adView.resume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        //Destruindo o AdView ao destruir a activity
+        adView.destroy();
+        super.onDestroy();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

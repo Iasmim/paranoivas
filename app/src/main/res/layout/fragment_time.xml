@@ -65,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:orientation="horizontal"
+        android:id="@+id/timerhome"
         android:gravity="center">
     </LinearLayout>
 </GridLayout>

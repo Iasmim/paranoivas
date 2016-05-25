@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,13 +34,14 @@ import com.example.iasmimc.myapplication.RepositorioScript;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.google.android.gms.ads.*;
 
 public class AddDebito extends ActionBarActivity {
 
     List<String> valores = null;
     Repositorio repositorio;
-
+    private AdView adView;
+   // private final String ANÚNCIO_ID = "ca-app-pub-2299446572371245/3514097012";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,28 @@ public class AddDebito extends ActionBarActivity {
             t3.setText(it.getStringExtra("pagas"));
             t4.setText(it.getStringExtra("id_parcela"));
         }
+
+        // Criando o AdView.
+        adView = new AdView(this);
+        adView.setAdUnitId("ca-app-pub-2299446572371245/3514097012");
+        adView.setAdSize(AdSize.BANNER);
+
+
+        // Recuperando o layout onde o anúncio vai ser exibido
+        LinearLayout layout = (LinearLayout)findViewById(R.id.layoutdebito);
+
+        // Adicionando o AdView no layout.
+        layout.addView(adView,0);
+
+        // Fazendo uma requisição para recuperar o anúncio.
+       // AdRequest adRequest = new AdRequest.Builder().build();
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("ca-app-pub-2299446572371245/3514097012")
+                .build();
+
+        // Adicionando a requisição no AdView.
+        adView.loadAd(adRequest);
     }
 
 
@@ -124,5 +148,26 @@ public class AddDebito extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        //Pausando o AdView ao pausar a activity
+        adView.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Resumindo o AdView ao resumir a activity
+        adView.resume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        //Destruindo o AdView ao destruir a activity
+        adView.destroy();
+        super.onDestroy();
     }
 }
