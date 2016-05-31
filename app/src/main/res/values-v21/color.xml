@@ -6,7 +6,7 @@
     <color name="black_modal">#BF000000</color>
     
     <color name="budgetColorGreenBackground">#2EBE51</color>
-    <color name="budgetColorGreenRingColor">#3ED269</color>
+    <color name="budgetColorGreenRingColor">#66CDAA</color>
     <color name="budgetColorYellowBackground">#FBB600</color>
     <color name="budgetColorYellowRingColor">#F5D54A</color>
     <color name="budgetColorRedBackground">#E22727</color>
@@ -30,7 +30,7 @@
     <color name="transparent50percent">#BF000000</color>
     <color name="shader_black">#46000000</color>
     
-    <color name="random1">#91b266</color>
+    <color name="random1">#66CDAA</color>
     <color name="random2">#eee58a</color>
     <color name="random3">#dd5526</color>
     <color name="random4">#e49524</color>

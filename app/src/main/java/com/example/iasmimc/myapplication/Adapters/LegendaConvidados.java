@@ -57,15 +57,12 @@ public class  LegendaConvidados extends BaseAdapter {
     private View getLegenda(int position, View view) {
         Legendas c = lista.get(position);
 
-        ImageView name = (ImageView) view.findViewById(R.id.retangulo);
-        if(c.Color  == 0)
-           name.setImageResource(R.drawable.gift);
-        else if(c.Color  == 1)
-            name.setImageResource(R.drawable.gift);
-        else if(c.Color  == 2)
-            name.setImageResource(R.drawable.gift);
-        else if(c.Color  == 3)
-            name.setImageResource(R.drawable.gift);
+     ImageView name = (ImageView) view.findViewById(R.id.retangulo);
+        if(c.Color  == 0 )
+           name.setImageResource(R.drawable.seta);
+        else if(c.Color  == 5)
+            name.setImageResource(R.drawable.seta);
+
 
         TextView qtde = (TextView) view.findViewById(R.id.textlegenda);
         qtde.setText(c.Descricao);
@@ -75,7 +72,7 @@ public class  LegendaConvidados extends BaseAdapter {
            legenda.setText(c.qtde + "");
 
         if (position == 5 || position == 0)
-            view.setBackgroundColor(Color.parseColor("#F48FB1"));
+            view.setBackgroundColor(Color.parseColor("#66CDAA"));
 
 
         return  view;

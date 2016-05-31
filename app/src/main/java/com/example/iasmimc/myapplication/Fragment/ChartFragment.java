@@ -136,7 +136,7 @@ public class ChartFragment extends Fragment {
         l0.qtde = -1;
 
         Legendas l1 = new Legendas();
-        l1.Color = 0;
+        l1.Color = 88;
         l1.Descricao =getResources().getString(R.string.title_confirmado);
         l1.qtde = confirmados;
         l1.id = 0;
@@ -180,7 +180,7 @@ public class ChartFragment extends Fragment {
 
 
         Legendas l8 = new Legendas();
-        l8.Color = 5;
+        l8.Color = 55;
         l8.Descricao =  getResources().getString(R.string.valortotal);
         l8.qtde = valortot;
         l8.id = 9;

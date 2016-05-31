@@ -4,18 +4,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.iasmimc.myapplication.Class.Config;
 import com.example.iasmimc.myapplication.R;
 import com.example.iasmimc.myapplication.Repositorio;
 import com.example.iasmimc.myapplication.RepositorioScript;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 import java.util.Calendar;
 
 public  class TimeRegreFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     View v;
+    AdView adView;
 Repositorio repositorio;
     public  static TimeRegreFragment newInstance(int sectionNumber ) {
         TimeRegreFragment fragment = new TimeRegreFragment();
@@ -37,6 +42,20 @@ Repositorio repositorio;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v =  inflater.inflate(R.layout.fragment_time, container, false);
+
+        adView = new AdView(getActivity());
+        adView.setAdUnitId("ca-app-pub-2299446572371245/3514097012");
+        adView.setAdSize(AdSize.BANNER);
+        adView.setBottom(0);
+        LinearLayout layout = (LinearLayout)v.findViewById(R.id.timerhome);
+        layout.addView(adView);
+       // AdRequest adRequest = new AdRequest.Builder().build();
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("ca-app-pub-2299446572371245/3514097012")
+                .build();
+        adView.loadAd(adRequest);
+
         return GetConfig();
     }
 

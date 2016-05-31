@@ -31,6 +31,11 @@
                     android:text="2"/>
                 <TextView
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:text=" "/>
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:textSize="8pt"
                     android:text="@string/vezes"/>
@@ -85,6 +90,11 @@
         android:id="@+id/totalpagas"
         android:textSize="8pt"
         android:text="2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8pt"
+            android:text=" "/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
