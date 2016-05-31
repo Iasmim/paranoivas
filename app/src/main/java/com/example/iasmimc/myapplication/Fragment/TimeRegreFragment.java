@@ -49,11 +49,11 @@ Repositorio repositorio;
         adView.setBottom(0);
         LinearLayout layout = (LinearLayout)v.findViewById(R.id.timerhome);
         layout.addView(adView);
-       // AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder().build();
 
-        AdRequest adRequest = new AdRequest.Builder()
+       /* AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("ca-app-pub-2299446572371245/3514097012")
-                .build();
+                .build();*/
         adView.loadAd(adRequest);
 
         return GetConfig();

@@ -108,11 +108,11 @@ public class ConvidadosAdd extends ActionBarActivity
         layout.addView(adView,8);
 
         // Fazendo uma requisição para recuperar o anúncio.
-        // AdRequest adRequest = new AdRequest.Builder().build();
-
+         AdRequest adRequest = new AdRequest.Builder().build();
+/*
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("ca-app-pub-2299446572371245/4046990617")
-                .build();
+                .build();*/
 
         // Adicionando a requisição no AdView.
         adView.loadAd(adRequest);

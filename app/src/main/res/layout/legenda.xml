@@ -9,7 +9,6 @@
         android:id="@+id/retangulo"
         android:layout_width="8dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/gift"
         android:layout_weight="0.2"
         />
     <TextView

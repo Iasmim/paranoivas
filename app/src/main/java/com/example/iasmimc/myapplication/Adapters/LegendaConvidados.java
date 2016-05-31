@@ -12,7 +12,11 @@ import android.widget.TextView;
 import com.example.iasmimc.myapplication.Class.Legendas;
 import com.example.iasmimc.myapplication.R;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by iasmim.c on 3/9/2015.
@@ -66,10 +70,10 @@ public class  LegendaConvidados extends BaseAdapter {
 
         TextView qtde = (TextView) view.findViewById(R.id.textlegenda);
         qtde.setText(c.Descricao);
-
+        NumberFormat nf = new DecimalFormat("#,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
         TextView legenda = (TextView) view.findViewById(R.id.status_legenda);
         if(c.qtde != -1)
-           legenda.setText(c.qtde + "");
+           legenda.setText( nf.format(c.qtde) + "");
 
         if (position == 5 || position == 0)
             view.setBackgroundColor(Color.parseColor("#66CDAA"));

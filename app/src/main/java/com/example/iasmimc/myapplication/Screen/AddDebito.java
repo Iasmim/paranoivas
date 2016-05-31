@@ -79,11 +79,11 @@ public class AddDebito extends ActionBarActivity {
         layout.addView(adView,0);
 
         // Fazendo uma requisição para recuperar o anúncio.
-       // AdRequest adRequest = new AdRequest.Builder().build();
+          AdRequest adRequest = new AdRequest.Builder().build();
 
-        AdRequest adRequest = new AdRequest.Builder()
+       /* AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("ca-app-pub-2299446572371245/3514097012")
-                .build();
+                .build();*/
 
         // Adicionando a requisição no AdView.
         adView.loadAd(adRequest);
